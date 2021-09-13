@@ -1,0 +1,21 @@
+{% extends "header.html" %}
+{% block content %}
+    <form class="form_4" method="POST" action="{{ url_for('book') }}">
+        <div class="input_fields">
+            <h1>Table Booking</h1>
+            <input type="text" name="name" id="name" placeholder="Name" required>
+            <input type="tel" name="phone_number" id="phone_number" placeholder="Phone number" required>
+            <input type="number" name="total_consumers" id="total_consumers" placeholder="Total consumers" min="1" max="25" required>
+            <div class="radio_container">
+                <label><input type="radio" name="floor" value="floor1" id="floor_1" required>Floor 1</label>
+                <label><input type="radio" name="floor" value="floor2" id="floor_2" required>Floor 2</label>
+            </div>
+            <input type="time" name="time" id="time" placeholder="Time" required>
+        </div>
+    <button class="sink_md_btn"  type="submit">
+        book
+    </button>
+    </form>
+{% endblock %}
+</body>
+</html>

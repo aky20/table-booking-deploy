@@ -1,0 +1,42 @@
+{% extends "header.html" %}
+{% block content %}
+    <form class="form_4" method="POST" action="{{ url_for('update', id=update_booking.id) }}">
+        <div class="input_fields">
+            <h1>Update Booking</h1>
+            <input type="text" name="name" id="name" placeholder="Name" value="{{ update_booking.name }}" required>
+            <input
+                    type="tel"
+                    name="phone_number"
+                    id="phone_number"
+                    placeholder="Phone number"
+                    value="{{ update_booking.phone_number }}"
+                    required
+            >
+            <input
+                    type="number"
+                    name="total_consumers"
+                    id="total_consumers"
+                    placeholder="Total consumers"
+                    min="1"
+                    max="25"
+                    value="{{ update_booking.total_consumers }}"
+                    required
+            >
+            <div class="radio_container">
+                {% if update_booking.floor == "floor1" %}
+                <label><input type="radio" name="floor" value="floor1" checked>Floor 1</label>
+                <label><input type="radio" name="floor" value="floor2">Floor 2</label>
+                {% else %}
+                <label><input type="radio" name="floor" value="floor1">Floor 1</label>
+                <label><input type="radio" name="floor" value="floor2" checked>Floor 2</label>
+                {% endif %}
+            </div>
+            <input type="time" name="time" id="time" placeholder="Time" value="{{update_booking.time}}" required>
+        </div>
+        <button class="sink_md_btn" type="submit">
+            Update
+        </button>
+    </form>
+{% endblock %}
+</body>
+</html>

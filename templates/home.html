@@ -1,0 +1,51 @@
+{% extends "header.html" %}
+{% block content %}
+
+    <a href="{{ url_for('book') }}" class="link">go to book</a>
+    {% if not bookings: %}
+    <h1 class="header">No Booking Today</h1>
+    {% else %}
+        <table class="table_1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th class="extra">Phone number</th>
+            <th class="extra">Total Consumers</th>
+            <th class="extra">Floor</th>
+            <th class="extra">Time</th>
+            <th class="table_more_column">More</th>
+            <th>Edit</th>
+        </tr>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking['id'] }}</td>
+            <td>{{ booking['name'] }}</td>
+            <td class="extra">{{ booking['phone_number'] }}</td>
+            <td class="extra">{{ booking['total_consumers'] }}</td>
+            <td class="extra">{{ booking['floor'] }}</td>
+            <td class="extra">{{ booking['time'] }}</td>
+            <td class="table_more_column">
+                <p><span>Phone number : </span>{{ booking['phone_number'] }}</p>
+                <p><span>Total Consumers : </span>{{ booking['total_consumers'] }}</p>
+                <p><span>Floor : </span>{{ booking['floor'] }}</p>
+                <p><span>Time : </span>{{ booking['time'] }}</p>
+            </td>
+            <td>
+                <a class="scale_icon_btn" href="{{ url_for( 'update', id=booking['id'] ) }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 update" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                </a>
+                <a class="scale_icon_btn" href="{{ url_for('delete', id=booking['id']) }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 delete" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}
+</body>
+</html>
