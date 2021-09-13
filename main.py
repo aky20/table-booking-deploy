@@ -17,11 +17,10 @@ class Booking(db.Model):
     total_consumers = db.Column(db.Integer, nullable=False)
     floor = db.Column(db.String(10), nullable=False)
     time = db.Column(db.String(10), nullable=False)
+db.create_all()
 
 @app.route("/")
 def home():
-    if not os.path.isfile(db_name):
-        db.create_all()
     # get all data in Booking table
     all_bookings = Booking.query.all()
 
